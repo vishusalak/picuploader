@@ -1,0 +1,85 @@
+<!DOCTYPE Html>
+<html>
+<head>
+<meta charset="UTF-8">
+<script src="http://connect.facebook.net/en_US/all.js"></script>
+<title>app</title>
+
+</head>
+<body>
+<fb:login-button autologoutlink="true" scope="user_photos,user_posts,publish_actions,read_stream" onlogin="OnRequestPermission();">
+</fb:login-button>
+<script language="javascript" type="text/javascript">
+    FB.init({
+        appId: '1645234412377257',
+        status: true, 
+        cookie: true, 
+        xfbml: true
+    });    
+</script>
+
+
+<button name="button" onclick="upload_pic()" value="Upload!">Upload!</button>
+
+<br> <br> <br>
+<p>
+	No. of Likes : <p id = "output_likes"></p>
+	<button onclick = "calc_likes()">Refresh!</button>
+</p>
+<script language="javascript" type="text/javascript">
+function upload_pic() {
+var imgURL="https://upload.wikimedia.org/wikipedia/commons/d/d5/Pic_de_neige_cordier_Face_E.jpg";
+FB.api('/photos', 'post', {
+    message:'Uploaded by Picuploader! Do try!',
+    url:imgURL        
+}, function(response){
+
+    if (!response || response.error) {
+        alert('Error occured');
+    } else {
+     	 pic_id = response.id;
+    }
+});
+}
+
+// function calc_likes(){
+// 	FB.api(
+//     "/pic_id/likes?summary=true",
+//     function(response) {
+//       if (!response || response.error) {
+//         alert("error");
+//       }
+//       else{
+//       	alert('no error');
+//       	var j = 0;
+//       	for (var i = 0; i < response.data.length; i++){
+//       		j++;
+//       	}
+//         var op = document.getElementById("output_likes");
+//          op.innerHTML = j ; 
+      
+//     }
+
+// );
+// }
+// </script>
+
+
+
+
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</html>
